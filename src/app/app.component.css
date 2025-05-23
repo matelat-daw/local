@@ -1,13 +1,20 @@
-#particles-js {
+html, body {
+    background-color: #000 !important;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+  #particles-js {
     position: fixed;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     z-index: 0;
-    background-color: #000;
+    background-color: #000 !important;
   }
-  
   .container {
     display: flex;
     justify-content: center;
@@ -17,73 +24,89 @@
     position: relative;
     z-index: 1;
   }
-
-  /* Nuevo estilo para el div con clase border */
   .border {
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo más oscuro y semitransparente */
-    padding: 20px; /* Espacio interno para que el message-box no toque los bordes */
-    border-radius: 20px; /* Bordes redondeados para coincidir con el estilo del message-box */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
-    /* Calculamos el tamaño para que sea 20% más grande que message-box en todas direcciones */
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    width: 80%;
+    max-width: 600px;
   }
-  
   .message-box {
-    background-color: rgba(60, 60, 60, 0.7); /* Fondo oscuro semitransparente */
-    border-radius: 16px; /* Bordes más redondeados */
-    padding: 50px; /* Padding aumentado para compensar el borde más grande */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    background-color: rgba(60, 60, 60, 0.7);
+    border-radius: 16px;
+    padding: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     max-width: 500px;
     text-align: center;
     position: relative;
+    opacity: 0;
     transform: translateX(-200%);
-    opacity: 0;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
   }
-  
   .message-box.show {
-    transform: translateX(0);
+    animation: slideInCenter 0.7s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+  }
+  .message-box.center {
     opacity: 1;
+    transform: translateX(0);
   }
-  
   .message-box.hide {
-    transform: translateX(200%);
-    opacity: 0;
+    animation: slideOutRight 0.7s cubic-bezier(0.77, 0, 0.175, 1) forwards;
   }
-  
+  @keyframes slideInCenter {
+    from {
+      opacity: 0;
+      transform: translateX(-200%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideOutRight {
+    from {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(200%);
+    }
+  }
   .message-box p {
     font-size: 18px;
-    color: #f8f9fa; /* Texto claro para contraste con fondo oscuro */
+    color: #f8f9fa;
     margin: 0;
     line-height: 1.5;
-    font-weight: 300; /* Texto más ligero */
-    letter-spacing: 0.5px; /* Mejor legibilidad */
+    font-weight: 300;
+    letter-spacing: 0.5px;
   }
-
-  /* Estilos para el contenedor del botón de cierre */
   .close-message {
     margin-top: 20px;
-    animation: fadeIn 0.5s ease-in-out forwards;
+    animation: fadeIn 0.7s ease-in-out forwards;
+    opacity: 0;
   }
-  
+  .close-message.show {
+    opacity: 1;
+  }
   .close-message p {
     font-size: 18px;
-    color: #f8f9fa; /* Texto claro para contraste con fondo oscuro */
+    color: #f8f9fa;
     margin: 0;
     line-height: 1.5;
-    font-weight: 300; /* Texto más ligero */
-    letter-spacing: 0.5px; /* Mejor legibilidad */
+    font-weight: 300;
+    letter-spacing: 0.5px;
     background-color: rgba(60, 60, 60, 0.8);
     border: 2px solid rgba(100, 100, 100, 0.5);
     border-radius: 12px;
     padding: 12px 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
-  /* Animación para el mensaje de cierre */
   @keyframes fadeIn {
     from {
       opacity: 0;

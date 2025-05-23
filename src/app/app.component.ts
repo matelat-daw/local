@@ -10,29 +10,25 @@ declare var particlesJS: any;
 })
 export class AppComponent implements OnInit  {
   title = 'local';
-  showMessage = false;
-  showCloseMessage = false;
+  showMessage = true; // Inicialmente mostramos solo el mensaje principal
   http = inject(HttpClient);
 
   ngOnInit() {
-    // Continuar con la inicialización normal si ya fue recargada
     this.initParticles();
-    // Mostrar el mensaje con animación
+    
+    // Mostrar el mensaje principal después de un breve retraso
     setTimeout(() => {
-      this.showMessage = true;
+      this.showMessage = true; // Aparece desde la izquierda
       
-      // Después de 3 segundos, ocultar el mensaje y mostrar instrucción de cierre
+      // Después de 5 segundos, ocultar el mensaje principal (sale por la derecha)
       setTimeout(() => {
         this.showMessage = false;
         
-        // Dar tiempo para que termine la animación de salida
+        // Esperar a que termine la animación de salida antes de mostrar el mensaje de cierre
         setTimeout(() => {
-          // Mostrar un mensaje alternativo si la ventana no se cierra
-          setTimeout(() => {
-            this.showCloseMessage = true;
-          }, 300);
-        }, 500);
-      }, 5000);
+          this.showMessage = false; // Mostrar el mensaje "Puedes cerrar esta ventana"
+        }, 500); // Tiempo suficiente para que termine la animación de salida
+      }, 5000); // 5 segundos de permanencia
     }, 100);
   }
 
