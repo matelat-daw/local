@@ -11,6 +11,6 @@ export class AppComponent implements OnInit  {
   title = 'local';
 
   ngOnInit() {
-    window.location.href = 'http://localhost:4200';
+    window.location.href = 'http://localhost:4200/login';
   }
 }
