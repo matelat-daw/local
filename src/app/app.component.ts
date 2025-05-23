@@ -1,16 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit  {
   title = 'local';
+  showMessage = false;
 
   ngOnInit() {
-    window.location.href = 'http://localhost:4200/login';
+    // Mostrar el mensaje con animación
+    setTimeout(() => {
+      this.showMessage = true;
+      
+      // Después de 3 segundos, ocultar el mensaje y cerrar
+      setTimeout(() => {
+        this.showMessage = false;
+        
+        // Dar tiempo para que termine la animación de salida
+        setTimeout(() => {
+          window.close();
+        }, 500);
+      }, 3000);
+    }, 100);
   }
 }
