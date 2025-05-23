@@ -1,6 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RouterOutlet } from '@angular/router';
 
 declare var particlesJS: any;
 
@@ -12,23 +11,28 @@ declare var particlesJS: any;
 export class AppComponent implements OnInit  {
   title = 'local';
   showMessage = false;
+  showCloseMessage = false;
   http = inject(HttpClient);
 
   ngOnInit() {
+    // Continuar con la inicialización normal si ya fue recargada
     this.initParticles();
     // Mostrar el mensaje con animación
     setTimeout(() => {
       this.showMessage = true;
       
-      // Después de 3 segundos, ocultar el mensaje y cerrar
+      // Después de 3 segundos, ocultar el mensaje y mostrar instrucción de cierre
       setTimeout(() => {
         this.showMessage = false;
         
         // Dar tiempo para que termine la animación de salida
         setTimeout(() => {
-          window.close();
+          // Mostrar un mensaje alternativo si la ventana no se cierra
+          setTimeout(() => {
+            this.showCloseMessage = true;
+          }, 300);
         }, 500);
-      }, 3000);
+      }, 5000);
     }, 100);
   }
 

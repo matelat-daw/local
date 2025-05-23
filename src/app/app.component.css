@@ -26,6 +26,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4); /* Sombra más pronunciada */
     /* Calculamos el tamaño para que sea 20% más grande que message-box en todas direcciones */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
@@ -60,4 +61,36 @@
     line-height: 1.5;
     font-weight: 300; /* Texto más ligero */
     letter-spacing: 0.5px; /* Mejor legibilidad */
+  }
+
+  /* Estilos para el contenedor del botón de cierre */
+  .close-message {
+    margin-top: 20px;
+    animation: fadeIn 0.5s ease-in-out forwards;
+  }
+  
+  .close-message p {
+    font-size: 18px;
+    color: #f8f9fa; /* Texto claro para contraste con fondo oscuro */
+    margin: 0;
+    line-height: 1.5;
+    font-weight: 300; /* Texto más ligero */
+    letter-spacing: 0.5px; /* Mejor legibilidad */
+    background-color: rgba(60, 60, 60, 0.8);
+    border: 2px solid rgba(100, 100, 100, 0.5);
+    border-radius: 12px;
+    padding: 12px 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Animación para el mensaje de cierre */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }

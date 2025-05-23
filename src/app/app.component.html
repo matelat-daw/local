@@ -4,5 +4,11 @@
     <div class="message-box" [class.show]="showMessage" [class.hide]="!showMessage">
       <p>Gracias por Confirmar tu Registro. Usa el Formulario de Login para Visitar el Espacio.</p>
     </div>
+    @if (showCloseMessage)
+    {
+      <div class="close-message">
+        <p>Puedes Cerrar Esta Ventana</p>
+      </div>
+    }
   </div>
 </div>
